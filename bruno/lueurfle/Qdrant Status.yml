@@ -1,0 +1,9 @@
+info:
+  name: Qdrant Status
+  type: http
+  seq: 5
+http:
+  method: GET
+  url: "{{baseUrl}}/api/documents/qdrant-status"
+settings:
+  encodeUrl: true
