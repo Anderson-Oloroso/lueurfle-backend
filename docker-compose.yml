@@ -1,0 +1,37 @@
+services:
+  lueurfle-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: lueurfle-backend
+    ports:
+      - "${PORT:-3000}:3000"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - CORS_ORIGIN=${CORS_ORIGIN:-http://localhost:5500}
+      - N8N_BASE_URL=${N8N_BASE_URL:-http://host.docker.internal:5678}
+      - N8N_INGEST_WEBHOOK_PATH=${N8N_INGEST_WEBHOOK_PATH:-/webhook/ingest-pdf}
+      - N8N_CHAT_WEBHOOK_PATH=${N8N_CHAT_WEBHOOK_PATH:-/webhook/chat-french}
+      - N8N_TIMEOUT_MS=${N8N_TIMEOUT_MS:-25000}
+      - QDRANT_URL=${QDRANT_URL:-http://host.docker.internal:6333}
+      - QDRANT_API_KEY=${QDRANT_API_KEY:-}
+      - QDRANT_COLLECTION=${QDRANT_COLLECTION:-lueurfle_french_3072}
+      - QDRANT_VECTOR_SIZE=${QDRANT_VECTOR_SIZE:-3072}
+      - MAX_PDF_SIZE_MB=${MAX_PDF_SIZE_MB:-15}
+    networks:
+      - lueurfle-backend-net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/health').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+networks:
+  lueurfle-backend-net:
+    driver: bridge
