@@ -1,0 +1,19 @@
+info:
+  name: Chat - Intermedio (EN)
+  type: http
+  seq: 4
+http:
+  method: POST
+  url: "{{baseUrl}}/api/chat"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "message": "/intermedio Explain when to use imparfait vs passé composé",
+        "uiLanguage": "en"
+      }
+settings:
+  encodeUrl: true
