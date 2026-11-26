@@ -21,7 +21,7 @@ export class GuardrailService {
     /\b(programa|programar|codigo\s+fuente|algoritmo|base\s+de\s+datos|api\s+rest)\b/i,
     /\b(bitcoin|ethereum|trading|criptomoneda|bolsa\s+de\s+valores|hipoteca)\b/i,
     /\b(receta\s+medica|diagnostico\s+medico|dosis\s+de\s+medicamento|abogado|demanda\s+legal)\b/i,
-    /\b(enseñame|teach\s+me|aprender|learn)\s+(aleman|german|japones|japanese|chino|mandarin|italiano|portugues|ruso|coreano)\b/i,
+    /\b(ensename|teach\s+me|aprender|learn)\s+(aleman|german|japones|japanese|chino|mandarin|italiano|portugues|ruso|coreano)\b/i,
     /\b(escribe\s+un\s+codigo|write\s+a\s+script|hackear|exploit|vulnerabilidad)\b/i
   ];
 
@@ -36,10 +36,12 @@ export class GuardrailService {
    * @returns {{ allowed: boolean, category: 'ok'|'prompt_injection'|'off_topic', reason: string|null }}
    */
   inspect(message) {
-    const text = String(message || '').trim();
-    if (!text) {
+    const raw = String(message || '').trim();
+    if (!raw) {
       return { allowed: true, category: 'ok', reason: null };
     }
+
+    const text = raw.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 
     for (const pattern of GuardrailService.#INJECTION_PATTERNS) {
       if (pattern.test(text)) {

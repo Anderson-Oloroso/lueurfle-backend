@@ -1,0 +1,19 @@
+info:
+  name: Chat - Basico
+  type: http
+  seq: 3
+http:
+  method: POST
+  url: "{{baseUrl}}/api/chat"
+  headers:
+    - name: Content-Type
+      value: application/json
+  body:
+    type: json
+    data: |-
+      {
+        "message": "/basico Hola Lueur, ¿cómo saludo por la mañana en francés?",
+        "uiLanguage": "es"
+      }
+settings:
+  encodeUrl: true
