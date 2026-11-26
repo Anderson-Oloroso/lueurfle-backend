@@ -23,9 +23,10 @@ ENV PORT=3000
 # Copiar dependencias ya resueltas desde la etapa deps
 COPY --from=deps /app/node_modules ./node_modules
 
-# Copiar código fuente de la aplicación
+# Copiar código fuente y scripts de Qdrant
 COPY package.json ./
 COPY src ./src
+COPY scripts ./scripts
 
 # Asegurar permisos para el usuario no-root incluido en la imagen oficial
 RUN chown -R node:node /app

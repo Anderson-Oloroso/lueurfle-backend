@@ -1,0 +1,13 @@
+node_modules
+.git
+.gitignore
+.env
+.env.*
+!.env.example
+tests
+bruno
+coverage
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
