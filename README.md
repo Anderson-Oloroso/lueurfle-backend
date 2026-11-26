@@ -4,13 +4,13 @@
 
 ---
 
-## 🎯 Objetivo
+## Objetivo
 
 Proveer una capa backend modular que valide entradas, aplique guardrails contra temas fuera del francés y *prompt injection*, gestione sesiones ligeras e idiomas de soporte (`es` / `en`), valide archivos `docs.pdf` por cabecera binaria (`%PDF-`) y conecte con **n8n + Qdrant** para ingesta y recuperación RAG.
 
 ---
 
-## 🛠️ Tecnologías
+## Tecnologías
 
 - **Node.js 20+ / 22+ / 25+** (`"type": "module"`, programación Orientada a Objetos con clases ES6)
 - **Express 5** + `helmet` + `cors` + `express-rate-limit` + `zod` + `multer`
@@ -21,7 +21,7 @@ Proveer una capa backend modular que valide entradas, aplique guardrails contra 
 
 ---
 
-## 📂 Árbol de Directorios
+## Árbol de Directorios
 
 ```text
 lueurfle-backend/
@@ -50,10 +50,10 @@ lueurfle-backend/
 
 ---
 
-## 🌐 Endpoints Principales
+## Endpoints Principales
 
 - `GET /health` y `GET /health/ready`
-- `GET /api/levels` — fases `/basico` (A1–A2), `/intermedio` (B1–B2), `/avanzado` (C1–C2) y matriz OCEAN
+- `GET /api/levels` — fases `/basico` (A1-A2), `/intermedio` (B1-B2), `/avanzado` (C1-C2) y matriz OCEAN
 - `GET /api/sessions`, `POST /api/sessions`, `GET /api/sessions/:id/messages`, `PATCH /api/sessions/:id`, `DELETE /api/sessions/:id`
 - `POST /api/chat` — procesa comandos de nivel, guardrails y consulta RAG en n8n + Qdrant (`uiLanguage`: `'es' | 'en'`)
 - `POST /api/documents/upload` — valida `docs.pdf` (`%PDF-`) y envía a n8n para embeddings en Qdrant
@@ -61,7 +61,7 @@ lueurfle-backend/
 
 ---
 
-## 🚀 Cómo Ejecutarlo
+## Cómo Ejecutarlo
 
 ### Sin Docker
 ```bash
@@ -80,7 +80,7 @@ docker compose up -d --build
 
 ---
 
-## 👤 Autoría
+## Autoría
 
 - **Autor:** Henrik Anderson Oloroso García (`Anderson-Oloroso`)
 - **Licencia:** [MIT](./LICENSE)
